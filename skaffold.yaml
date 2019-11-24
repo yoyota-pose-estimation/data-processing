@@ -1,0 +1,16 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+    - image: registry.dudaji.org/yoyota/pose-estimation/pair-same-time-image
+deploy:
+  helm:
+    releases:
+      - name: pair-same-time-image
+        namespace: yoyota
+        chartPath: helm/pair-same-time-image
+        valuesFiles:
+          - helm/values/common.yaml
+        setValueTemplates:
+          image.repository: "{{.IMAGE_NAME}}"
+          image.tag: "{{.DIGEST_HEX}}"
