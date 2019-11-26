@@ -12,6 +12,7 @@ spec:
         configMap:
           name: {{ include "pair-same-time-image.fullname" . }}
       restartPolicy: {{ .Values.restartPolicy }}
+      ttlSecondsAfterFinished: 0
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

@@ -1,0 +1,13 @@
+{{- if .Values.serviceAccount.create -}}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "pair-same-time-image.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "pair-same-time-image.serviceAccountName" . }}
+roleRef:
+  kind: Role
+  name: {{ include "pair-same-time-image.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
+{{- end -}}
