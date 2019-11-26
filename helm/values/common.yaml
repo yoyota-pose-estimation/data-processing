@@ -1,3 +1,5 @@
+args:
+  - --data_path=s3://pi-camera/turtleNeck/2019-11-12/10/00
 envFrom:
   - secretRef:
       name: storage-credential

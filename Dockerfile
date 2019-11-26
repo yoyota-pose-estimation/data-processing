@@ -1,10 +1,9 @@
 FROM tensorflow/tensorflow:2.0.0-py3
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# for cache
+RUN pip install tensorflow kubernetes
 COPY . .
+RUN python setup.py install
 
-WORKDIR /app/src
-ENTRYPOINT [ "python" ]
-CMD [ "app.py" ]
+ENTRYPOINT [ "pair_image" ]
